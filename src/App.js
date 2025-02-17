@@ -1,7 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { Card, CardContent } from './components/ui/card';
-import { Input } from './components/ui/input';
-import { Button } from './components/ui/button';
 
 export default function PricingCalculator() {
   const [price1, setPrice1] = useState('');
@@ -35,7 +32,7 @@ export default function PricingCalculator() {
   useEffect(() => {
     // 이익률이 바뀔 때마다 계산을 다시 수행
     calculatePrice(profitRate);
-  }, [profitRate]); // profitRate가 변경될 때마다 계산 실행
+  }, [profitRate, calculatePrice]); // calculatePrice를 의존성 배열에 추가
 
   const formatPrice = (price) => {
     return price ? price.toLocaleString() : '-';
@@ -121,7 +118,7 @@ export default function PricingCalculator() {
         </div>
 
         {/* 오른쪽: 기록된 가격 리스트 */}
-        <div className='w-3/5 p-4'>
+        <div className='w-1/3 p-4'>
           {records.length > 0 && (
             <Card className='shadow-lg rounded-lg p-4'>
               <h2 className='text-xl font-semibold mb-4'>기록된 가격들</h2>
@@ -130,11 +127,11 @@ export default function PricingCalculator() {
                   <thead>
                     <tr>
                       <th className='border-b p-2'>제품명</th>
-                      <th className='border-b p-2'>일반출하가</th>
-                      <th className='border-b p-2'>예외가</th>
+                      <th className='border-b p-2'>일반 출하가</th>
+                      <th className='border-b p-2'>예외 가격</th>
                       <th className='border-b p-2'>이익률</th>
-                      <th className='border-b p-2'>일출</th>
-                      <th className='border-b p-2'>예외가</th>
+                      <th className='border-b p-2'>일출가+</th>
+                      <th className='border-b p-2'>예외가+</th>
                     </tr>
                   </thead>
                   <tbody>
