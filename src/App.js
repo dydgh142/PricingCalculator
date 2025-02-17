@@ -122,7 +122,7 @@ export default function PricingCalculator() {
         </div>
 
         {/* 오른쪽: 기록된 가격 리스트 */}
-        <div className='w-1/3 p-4'>
+        <div className='w-3/5 p-4'>
           {records.length > 0 && (
             <Card className='shadow-lg rounded-lg p-4'>
               <h2 className='text-xl font-semibold mb-4'>기록된 가격들</h2>
@@ -134,8 +134,8 @@ export default function PricingCalculator() {
                       <th className='border-b p-2'>일반 출하가</th>
                       <th className='border-b p-2'>예외 가격</th>
                       <th className='border-b p-2'>이익률</th>
-                      <th className='border-b p-2'>일반 출하가 (이익률 반영)</th>
-                      <th className='border-b p-2'>예외 가격 (이익률 반영)</th>
+                      <th className='border-b p-2'>일반</th>
+                      <th className='border-b p-2'>예외</th>
                     </tr>
                   </thead>
                   <tbody>
