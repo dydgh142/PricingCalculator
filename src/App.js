@@ -63,7 +63,7 @@ export default function PricingCalculator() {
       <div className='flex w-full max-w-5xl justify-between'>
         {/* 왼쪽: 가격 계산기 */}
         <div className='flex-1 max-w-lg p-4'>
-          <Card className='w-full shadow-lg rounded-lg'>
+          <Card className='w-full max-w-lg shadow-lg rounded-lg bg-white'>
             <CardContent>
               <h1 className='text-2xl font-bold mb-4'>판매 가격 계산기</h1>
               <Input
@@ -124,7 +124,7 @@ export default function PricingCalculator() {
         {/* 오른쪽: 기록된 가격 리스트 */}
         <div className='w-3/5 p-4'>
           {records.length > 0 && (
-            <Card className='shadow-lg rounded-lg p-4'>
+            <Card className='bg-white shadow-lg rounded-lg p-4'>
               <h2 className='text-xl font-semibold mb-4'>기록된 가격들</h2>
               <div className='overflow-x-auto'>
                 <table className='min-w-full table-auto'>
