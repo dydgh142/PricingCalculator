@@ -1,0 +1,16 @@
+# Node modules
+node_modules/
+
+# Build outputs
+build/
+dist/
+
+# IDE files
+.idea/
+.vscode/
+
+# Log files
+*.log
+
+# Temporary files
+*.tmp
