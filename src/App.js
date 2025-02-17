@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from 'react';
-
+import React, { useState, useEffect, useCallback } from 'react';
 import { Card, CardContent } from './components/ui/card';
 import { Input } from './components/ui/input';
 import { Button } from './components/ui/button';
@@ -10,10 +9,11 @@ export default function PricingCalculator() {
   const [profitRate, setProfitRate] = useState(5);
   const [finalPrice, setFinalPrice] = useState(null);
   const [bothPrices, setBothPrices] = useState({ price1: null, price2: null });
-  const [recordText, setRecordText] = useState(''); // 기록할 텍스트 상태
-  const [records, setRecords] = useState([]); // 기록 리스트 상태
+  const [recordText, setRecordText] = useState('');
+  const [records, setRecords] = useState([]);
 
-  const calculatePrice = (newProfitRate) => {
+  // calculatePrice 함수 메모이제이션
+  const calculatePrice = useCallback((newProfitRate) => {
     const basePrice1 = parseFloat(price1);
     const basePrice2 = price2 ? parseFloat(price2) : null;
 
@@ -31,13 +31,13 @@ export default function PricingCalculator() {
     const basePrice = Math.min(basePrice1, basePrice2 || basePrice1);
     const calculatedFinalPrice = Math.round(basePrice * (1 + newProfitRate / 100));
     setFinalPrice(calculatedFinalPrice);
-  };
+  }, [price1, price2]); // 의존성 배열에 필요한 상태만 추가
 
   useEffect(() => {
     // 이익률이 바뀔 때마다 계산을 다시 수행
     calculatePrice(profitRate);
-  }, [profitRate, calculatePrice]); // calculatePrice를 의존성 배열에 추가
-
+  }, [profitRate, calculatePrice]); // calculatePrice는 이제 의존성 배열에 포함
+  
   const formatPrice = (price) => {
     return price ? price.toLocaleString() : '-';
   };
@@ -134,8 +134,8 @@ export default function PricingCalculator() {
                       <th className='border-b p-2'>일반 출하가</th>
                       <th className='border-b p-2'>예외 가격</th>
                       <th className='border-b p-2'>이익률</th>
-                      <th className='border-b p-2'>일출가+</th>
-                      <th className='border-b p-2'>예외가+</th>
+                      <th className='border-b p-2'>일반 출하가 (이익률 반영)</th>
+                      <th className='border-b p-2'>예외 가격 (이익률 반영)</th>
                     </tr>
                   </thead>
                   <tbody>
